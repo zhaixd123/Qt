@@ -16,9 +16,9 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>490</x>
-     <y>330</y>
-     <width>321</width>
+     <x>480</x>
+     <y>340</y>
+     <width>331</width>
      <height>131</height>
     </rect>
    </property>
@@ -67,32 +67,11 @@
      <string>按换行接收断行</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_5">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>60</y>
-      <width>121</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial Narrow</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>自定义包头</string>
-    </property>
-   </widget>
    <widget class="QCheckBox" name="checkBox_6">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>100</y>
+      <x>10</x>
+      <y>80</y>
       <width>121</width>
       <height>21</height>
      </rect>
@@ -106,24 +85,14 @@
      </font>
     </property>
     <property name="text">
-     <string>自定义包尾</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>60</y>
-      <width>181</width>
-      <height>21</height>
-     </rect>
+     <string>自定义断行符</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit_2">
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>100</y>
+      <y>80</y>
       <width>181</width>
       <height>21</height>
      </rect>
@@ -220,7 +189,7 @@
     </property>
    </item>
   </widget>
-  <widget class="QGroupBox" name="groupBox_2">
+  <widget class="QGroupBox" name="GroupBox_SendSettings">
    <property name="geometry">
     <rect>
      <x>480</x>
@@ -232,7 +201,7 @@
    <property name="title">
     <string>发送格式设置</string>
    </property>
-   <widget class="QCheckBox" name="checkBox_2">
+   <widget class="QCheckBox" name="QCheckBox_AddSpaceOnEnd">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -251,7 +220,7 @@
      <string>带换行符发送</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox">
+   <widget class="QCheckBox" name="QCheckBox_AddEnterOnEnd">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -275,9 +244,9 @@
    <widget class="QComboBox" name="PortBox_2">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>110</y>
-      <width>151</width>
+      <x>140</x>
+      <y>120</y>
+      <width>161</width>
       <height>22</height>
      </rect>
     </property>
@@ -285,14 +254,79 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>110</y>
-      <width>54</width>
+      <x>30</x>
+      <y>120</y>
+      <width>91</width>
       <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>asdfsadf：asdfasdfasdfasdfaasdfasdfasdf</string>
+     <string>请选择接收编码：</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_3">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>90</y>
+      <width>161</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>90</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>自定义：</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_7">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>60</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial Narrow</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>头</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_8">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>60</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial Narrow</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>尾</string>
     </property>
    </widget>
   </widget>
@@ -378,7 +412,7 @@
     <string>串口号：</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_4">
+  <widget class="QPushButton" name="btn_Clear">
    <property name="geometry">
     <rect>
      <x>22</x>

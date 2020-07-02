@@ -1,6 +1,9 @@
 #include "sericaltest.h"
 #include "ui_sericaltest.h"
 
+#include <QDateTime>
+#include <QTextCodec>
+
 SericalTest::SericalTest(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SericalTest)
@@ -82,23 +85,48 @@ void SericalTest::on_OpenSerialButton_clicked(){
 }
 //读取接收到的信息
 void SericalTest::ReadData(){
-
-    QByteArray buf;
-    buf=serial->readAll();
-    if(!buf.isEmpty()){
-        QString str=ui->Tedit_Read->toPlainText();
-        str+=tr(buf);
-        ui->Tedit_Read->clear();
-        ui->Tedit_Read->append(str);
+    static QByteArray byteArray;
+    QByteArray temp;
+    temp=serial->readAll();
+    //QString str=QTextCodec::codecForName("UTF-8")->toUnicode(justReadData);
+     QString lineBreak=NULL;
+    if(!temp.isEmpty())
+           {
+               byteArray.append(temp);
+               if(byteArray.contains("\r\n"))
+               {
+                   if(byteArray.contains("\r\n")){
+                       int tempcount=byteArray.indexOf("\r\n");
+                       qDebug()<<"包含换行符"<<tempcount<<endl;
+                   }
+                     QDateTime time = QDateTime::currentDateTime();
+                     QString readStr=QTextCodec::codecForName("UTF-8")->toUnicode(byteArray.left(byteArray.indexOf("\r\n")+2));
+                     QString showStr="RX->"+time.toString("hh:mm:ss")+":"+readStr;
+                     ui->Tedit_Read->append(showStr);
+                     byteArray = byteArray.right(byteArray.length()-byteArray.indexOf("\r\n")-2);
+               }
+           }
         qDebug()<<tr("In this function");
-    }
-    buf.clear();
 }
 //发送按钮槽函数
 void SericalTest::on_SendButton_clicked(){
-    serial->write(ui->Tedit_Write->toPlainText().toLatin1());
+    QString sendStr=ui->Tedit_Write->toPlainText();
+    QCheckBox *qcheckTemp=ui->GroupBox_SendSettings->findChild<QCheckBox *>("QCheckBox_AddSpaceOnEnd");
+    if(qcheckTemp->isChecked()==true){
+        sendStr+="\r";
+    }
+    qcheckTemp=ui->GroupBox_SendSettings->findChild<QCheckBox *>("QCheckBox_AddEnterOnEnd");
+    if(qcheckTemp->isChecked()==true){
+        sendStr+="\n";
+    }
+    QByteArray sendByteArray=sendStr.toLatin1();
+    serial->write(sendByteArray);
+    QString showStr="TX->"+QDateTime::currentDateTime().toString("hh:mm:ss")+":"+sendStr;
+    ui->Tedit_Read->append(showStr);
 }
 
+
+//初始化函数
 void SericalTest::initSerial(){
     foreach(const QSerialPortInfo &info,QSerialPortInfo::availablePorts()){
         QSerialPort serial;
@@ -109,4 +137,10 @@ void SericalTest::initSerial(){
         }
     }
     ui->BaudBox->setCurrentIndex(0);
+}
+
+//清空发送
+void SericalTest::on_btn_Clear_clicked()
+{
+    ui->Tedit_Read->setText("");
 }
