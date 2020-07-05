@@ -27,15 +27,11 @@ CONFIG += c++11
 
 SOURCES += \
         enterform.cpp \
-        kmp_arithmetic.cpp \
         main.cpp \
-        serialsretreatment.cpp \
         sericaltest.cpp
 
 HEADERS += \
         enterform.h \
-        kmp_arithmetic.h \
-        serialsretreatment.h \
         sericaltest.h
 
 FORMS += \
