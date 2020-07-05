@@ -137,14 +137,14 @@ void SericalTest::ReadData(){
     }
     else  if(byteArray.contains(suffixStr.toLatin1()))
     {
-        if(byteArray.contains("\r\n")){
-            int tempcount=byteArray.indexOf("\r\n");
+        if(byteArray.contains(suffixStr.toLatin1())){
+            int tempcount=byteArray.indexOf(suffixStr.toLatin1());
             qDebug()<<"包含换行符"<<tempcount<<endl;
         }
-        readStr=QTextCodec::codecForName(cbx_ReadEncoding->currentText().toLatin1())->toUnicode(byteArray.left(byteArray.indexOf("\r\n")+2));
+        readStr=QTextCodec::codecForName(cbx_ReadEncoding->currentText().toLatin1())->toUnicode(byteArray.left(byteArray.indexOf(suffixStr.toLatin1())+suffixStr.length()));
         showStr+=readStr;
         te_Read->append(showStr);
-        byteArray = byteArray.right(byteArray.length()-byteArray.indexOf("\r\n")-2);
+        byteArray = byteArray.right(byteArray.length()-byteArray.indexOf(suffixStr.toLatin1())-suffixStr.length());
     }
     qDebug()<<tr("In this function");
 }
@@ -356,12 +356,11 @@ void SericalTest::on_btn_OpenSerialPort_clicked()     //打开串口槽函数
 void SericalTest::on_btn_Send_clicked()    //发送按钮槽函数
 {
     QString sendStr=te_Send->toPlainText();     //获取要发送的内容
-    QByteArray sendByteArray;
-    QString encodStr=cbx_SendEncoding->currentText();  //获取编码名
-    QTextCodec *qCodec;
-
-    qCodec=QTextCodec::codecForName(encodStr.toLatin1());
-    sendByteArray=qCodec->fromUnicode(sendStr);
+    QByteArray sendByteArray;                   //字符串转换为QByteArray
+    QString encodStr=cbx_SendEncoding->currentText();  //获取编码格式
+    QTextCodec *qCodec;                         //编码转换实例
+    qCodec=QTextCodec::codecForName(encodStr.toLatin1());  //设置编码格式
+    sendByteArray=qCodec->fromUnicode(sendStr);            //转换
 
 
 

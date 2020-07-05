@@ -66,13 +66,13 @@
      </font>
     </property>
     <property name="text">
-     <string>按回车接收断行</string>
+     <string>回车断行</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="cb_ReadSpaceSuffix">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>160</x>
       <y>20</y>
       <width>121</width>
       <height>21</height>
@@ -93,7 +93,7 @@
      </font>
     </property>
     <property name="text">
-     <string>按换行接收断行</string>
+     <string>空格断行</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="cb_ReadSuffix">
